@@ -50,28 +50,28 @@ camera.release()
 face_data=np.asarray(face_data)
 face_data=face_data.reshape(10,-1)
 
-if 'names.pkl' not in os.listdir('data/'):
+if 'names.pkl' not in os.listdir('face-recognition/'):
     names=[name]*10
-    with open ('data/names.pkl','wb') as file:
+    with open ('face-recognition/names.pkl','wb') as file:
         pickle.dump(name,file)
 else:
     
-    with open('data/names.pkl','rb') as file:
+    with open('face-recognition/names.pkl','rb') as file:
         names=pickle.load(file)
         
-    names=names + [names]*10
-    with open('data/names.pkl', 'wb') as file:
+    names=names + [name]*10
+    with open('face-recognition/names.pkl', 'wb') as file:
         pickle.dump(names, file)
         
-if 'faces.pkl' not in os.listdir('data/'):
-    with open('data/faces.pkl', 'wb') as w:
+if 'faces.pkl' not in os.listdir('face-recognition/'):
+    with open('face-recognition/faces.pkl', 'wb') as w:
         pickle.dump(face_data, w)
 else:
-    with open('data/faces.pkl', 'rb') as w:
+    with open('face-recognition/faces.pkl', 'rb') as w:
         faces = pickle.load(w)
 
     faces = np.append(faces, face_data, axis=0)
-    with open('data/faces.pkl', 'wb') as w:
+    with open('face-recognition/faces.pkl', 'wb') as w:
         pickle.dump(faces, w)
        
         
