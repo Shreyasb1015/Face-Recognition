@@ -12,3 +12,12 @@ with open('face-recognition/names.pkl','rb') as file:
     labels=pickle.load(file)
 
 camera=cv2.VideoCapture(0)
+knn=KNeighborsClassifier(n_neighbors=4)
+knn.fit(faces,labels)
+
+while True:
+    ret,frame=camera.read()
+    if ret==True:
+        gray=cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
+        face_coordinates=facecascade.detectMultiScale(gray,1.3,5)
+        
