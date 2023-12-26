@@ -53,7 +53,7 @@ face_data=face_data.reshape(10,-1)
 if 'names.pkl' not in os.listdir('face-recognition/'):
     names=[name]*10
     with open ('face-recognition/names.pkl','wb') as file:
-        pickle.dump(name,file)
+        pickle.dump(names,file)
 else:
     
     with open('face-recognition/names.pkl','rb') as file:

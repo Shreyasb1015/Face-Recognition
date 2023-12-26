@@ -21,3 +21,21 @@ while True:
         gray=cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
         face_coordinates=facecascade.detectMultiScale(gray,1.3,5)
         
+        for (a,b,w,h) in face_coordinates:
+            fc=frame[b:b+h,a:a+w,:]
+            r = cv2.resize(fc, (50, 50)).flatten().reshape(1,-1)
+            text=knn.predict(r)
+            cv2.putText(frame,text[0],(a,b-10),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,0),2)
+            cv2.rectangle(frame,(a,b),(a+w,b+w),(0,0,255),2)
+        
+        cv2.imshow('Face recognition mode on',frame)
+        if cv2.waitKey(1)==27:
+            break
+    else:
+        print("Some error ocurred!!")
+        break
+
+cv2.destroyAllWindows()
+camera.release()
+        
+        
